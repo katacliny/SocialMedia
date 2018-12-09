@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Social media</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
+
+<script type="text/javascript">
+	$("#starttwittersearch").click(function () {
+		alert("ajax")
+		$.ajax({
+        url: '/StartSearch/',
+        data: {},
+        dataType: 'json',
+        success: function (data) {
+          
+            alert("A user with this username already exists.");
+          
+        }
+      });
+	})
+	$("#stoptwittersearch").click(function () {
+		alert("stop mundo");
+	})
+</script>
