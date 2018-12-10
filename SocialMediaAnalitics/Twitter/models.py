@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Tweet(models.Model):
@@ -9,6 +9,7 @@ class Tweet(models.Model):
 	locate = models.TextField()
 	num_word = models.IntegerField()
 	num_letter = models.IntegerField()
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.objects.get(username="MasterBigData").pk)
 
 	def __str__(self):
 		return self.tweeter_user + str(self.create)
@@ -21,6 +22,7 @@ class UserConfig(models.Model):
 	access_token_secret = models.TextField(default='MwOrSDreqI6qZiPnpqj8pDd30cqbtRkp6cJIaBR9zd8hh')
 	filter_key = models.TextField(default="#Python")
 	is_search = models.BooleanField(default=False)
-
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.objects.get(username="MasterBigData").pk)
+	
 	def __str__(self):
 		return self.filter_key

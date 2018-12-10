@@ -1,0 +1,10 @@
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" name="Save" value="Submit">
+</form>
+{% if not create %}
+	<li><a href="{% url 'CreateUser' %}">Create User</a></li>
+{% endif %}
+{% endblock %}

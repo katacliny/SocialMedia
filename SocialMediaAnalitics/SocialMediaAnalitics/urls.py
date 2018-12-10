@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Twitter import views as twitter_views
+from django.contrib.auth.decorators import login_required
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', twitter_views.Home.as_view(), name="Home"),
-    path('UpdateUserConfig/', twitter_views.UpdateUserConfig.as_view(), name="UpdateUserConfig"),
-    path('StartSearch/', twitter_views.StartSearch),
-    path('StopSearch/', twitter_views.StopSearch),
+    path('', twitter_views.Login.as_view(), name="Login"),
+    path('Logout', twitter_views.logout_view, name="Logout"),
+    path('CreateUser', twitter_views.CreateUser.as_view(), name="CreateUser"),
+    path('Home/', login_required(twitter_views.Home.as_view()), name="Home"),
+    path('UpdateUserConfig/', login_required(twitter_views.UpdateUserConfig.as_view()), name="UpdateUserConfig"),
+    path('StartSearch/', login_required(twitter_views.StartSearch)),
+    path('StopSearch/', login_required(twitter_views.StopSearch)),
 ]

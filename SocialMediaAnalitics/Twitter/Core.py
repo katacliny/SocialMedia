@@ -45,5 +45,6 @@ def StartStream():
 
 
 def StartSearch():
-	thread = Thread(target=StartStream)
-	thread.start()
+	if not uc.objects.first().is_search:
+		thread = Thread(target=StartStream)
+		thread.start()
