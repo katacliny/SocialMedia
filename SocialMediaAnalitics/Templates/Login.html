@@ -1,10 +1,32 @@
-{% block content %}
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" name="Save" value="Submit">
-</form>
-{% if not create %}
-	<li><a href="{% url 'CreateUser' %}">Create User</a></li>
-{% endif %}
-{% endblock %}
+{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static "css/app.css" %}">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+<div class="container padding-top">
+	<div class="row">
+		<div class="col-lg-12 ">
+			<form method="POST">
+				{% csrf_token %}
+				{% if not create %}
+				<label for="id_username">Username:</label>
+				<input class="form-control loging-control" type="text" name="username" autofocus="" required="" id="id_username">
+				<label for="id_password">Password:</label>
+				<input class="form-control loging-control" type="password" name="password" required="" id="id_password">
+				<input class="btn btn-primary margin-top" type="submit" name="Save" value="Submit">
+				<a class="btn btn-primary margin-top" href="{% url 'CreateUser' %}">Create User</a>
+				{% else %}
+				{{ form }}
+				<br/>
+				<input class="btn btn-primary margin-top" type="submit" name="Save" value="Submit">
+				{% endif %}
+			</form>
+		</div>
+	</div>
+</div>
+

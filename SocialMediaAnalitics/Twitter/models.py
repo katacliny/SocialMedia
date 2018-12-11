@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 class Tweet(models.Model):
 	tweeter_user = models.CharField(max_length=300)
-	text = models.TextField()
-	create = models.DateField()
-	locate = models.TextField()
-	num_word = models.IntegerField()
-	num_letter = models.IntegerField()
+	text = models.TextField(blank=True, null=True)
+	create = models.DateField(blank=True, null=True)
+	locate = models.TextField(blank=True, null=True)
+	num_word = models.IntegerField(blank=True, null=True)
+	num_letter = models.IntegerField(blank=True, null=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.objects.get(username="MasterBigData").pk)
 
 	def __str__(self):

@@ -17,8 +17,12 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect(reverse_lazy("Login"))
+	config = uc.objects.filter(user = request.user).first()
+	config.is_search = False
+	config.save()
+	logout(request)
+	return HttpResponseRedirect(reverse_lazy("Login"))
+    
 
 class Login(FormView):
 	form_class = AuthenticationForm
@@ -36,21 +40,27 @@ class Login(FormView):
 	        return HttpResponseRedirect(reverse_lazy("Login"))
 
 def StartSearch(request):
-	config = uc.objects.first()
-	config.is_search = True
-	config.save()
-	ss()
+	if request.user.is_authenticated:
+		config = uc.objects.filter(user = request.user).first()
+		config.is_search = True
+		config.save()
+		ss(request.user)
 	return HttpResponse("Start")
 
 def StopSearch(request):
-	config = uc.objects.first()
+	config = uc.objects.filter(user = request.user).first()
 	config.is_search = False
 	config.save()
 	return HttpResponse("Stop")
 
 class Home(TemplateView):
 	template_name = "Home.html"
-	
+
+	def get_context_data(self, **kwargs):
+	    data = super().get_context_data(**kwargs)
+	    data['listen'] = uc.objects.filter(user = self.request.user).first().is_search
+	    return data
+
 class CreateUser(CreateView):
 	model = User
 	form_class = UserCreationForm
@@ -73,7 +83,7 @@ class UpdateUserConfig(UpdateView):
 	success_url = "/"
 
 	def get_object(self):
-		return uc.objects.first()
+		return uc.objects.filter(user = self.request.user).first()
 
 	def form_valid(self, form):
 		form.save()
