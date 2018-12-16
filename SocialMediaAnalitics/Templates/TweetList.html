@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+{% load cool_paginate %}
+<br/>
+<a id="csv-file" class="btn btn-primary" href="{% url 'CsvFile' %}">Download csv-file</a>
+<br/>
+<br/>
+<div></div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Tweet</th>
+      <th>Fecha de creado</th>
+      <th>Hora</th>
+      <th>Locación</th>
+      <th>Número de palabras</th>
+      <th>Número de letras</th>
+      <th>UsuarioApp</th>
+      <th>tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tweet in tweets %}
+      <tr>
+        <td>{{ tweet.tweeter_user }}</td>
+        <td>{{ tweet.text }}</td>
+        <td>{{ tweet.create }}</td>
+        <td>{{ tweet.hour }}</td>
+        <td>{{ tweet.locate }}</td>
+        <td>{{ tweet.num_word }}</td>
+        <td>{{ tweet.num_letter }}</td>
+        <td>{{ tweet.user.username }}</td>
+        <td>{{ tweet.tag }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="container text-center">
+  {% if tweets %}
+    {% cool_paginate page_obj=tweets.paginator %}
+  {% endif %}
+</div>
+{% endblock %}

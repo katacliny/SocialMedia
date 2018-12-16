@@ -27,4 +27,8 @@ urlpatterns = [
     path('UpdateUserConfig/', login_required(twitter_views.UpdateUserConfig.as_view()), name="UpdateUserConfig"),
     path('StartSearch/', login_required(twitter_views.StartSearch)),
     path('StopSearch/', login_required(twitter_views.StopSearch)),
+    path('Grafics/', login_required(twitter_views.Grafics.as_view()), name="Grafics"),
+    path('GetDataForGrafics/', twitter_views.GetDataForGrafics, name="GetDataForGrafics"),
+    path('TweetsList/', login_required(twitter_views.TweetsList.as_view()), name="TweetsList"),
+    path('CsvFile/', twitter_views.CSVFile, name="CsvFile"),
 ]

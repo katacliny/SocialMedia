@@ -10,6 +10,7 @@ from threading import Thread
 from .models import UserConfig as uc
 from .models import Tweet
 from datetime import datetime
+from dateutil.parser import parse
 config = uc.objects.first()
 
 
@@ -26,11 +27,13 @@ class MyListener(StreamListener):
 				new_tweet = Tweet()
 				new_tweet.tweeter_user = json_data["user"]["name"]
 				new_tweet.text = json_data["text"]
-				new_tweet.create = datetime.now()
+				new_tweet.create = parse(json_data["created_at"], fuzzy=True)
+				new_tweet.hour = parse(json_data["created_at"], fuzzy=True).hour
 				new_tweet.locate = json_data["user"]["location"]
 				new_tweet.num_word = json_data["text"].split().__len__()
 				new_tweet.num_letter = json_data["text"].__len__()
 				new_tweet.user = self.user
+				new_tweet.tag = uc.objects.filter(user = self.user).first().filter_key
 				new_tweet.save()
 			except Exception as e:
 				print("Error al guardar ")
@@ -49,7 +52,7 @@ def StartStream(*args, **kwargs):
 	api = tweepy.API(auth)
 	listener = MyListener(args[0])
 	twitter_stream = Stream(auth, listener)
-	twitter_stream.filter(track=uc.objects.filter(user = args[0]).first().filter_key)
+	twitter_stream.filter(track=[uc.objects.filter(user = args[0]).first().filter_key])
 
 
 def StartSearch(user):

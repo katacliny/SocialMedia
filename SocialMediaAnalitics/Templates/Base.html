@@ -9,6 +9,7 @@
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
@@ -22,7 +23,8 @@
     <ul class="nav navbar-nav">
       <li><a href="{% url 'Home' %}">Home</a></li>
       <li><a href="{% url 'UpdateUserConfig' %}">Update User Config</a></li></li>
-      <li><a href="#">Gráficas</a></li>
+      <li><a href="{% url 'Grafics' %}">Gráficas</a></li>
+      <li><a href="{% url 'TweetsList' %}">Lista de tweets</a></li>
       <li><a href="{% url 'Logout' %}">Logout</a></li>
     </ul>
   </div>
@@ -34,11 +36,7 @@
 <div class="fixed-bottom">
 	<footer class="app-footer footer container text-center ">
 		  <div>
-		    <span>&copy; 2018 creativeLabs.</span>
-		  </div>
-		  <div class="ml-auto">
-		    <span>Powered by</span>
-		    <a href="https://coreui.io">CoreUI</a>
+		    <span>2018</span>
 		  </div>
 	</footer>
 </div>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>A continuación se presentan algunas gráficas, para representar la cantidad de tweets en función de una variable especifica como puede ser el numero de letras, la hora etc... </h2>
+</div>
+<div class="container text-center">
+    <div id="spinner" class="loader"></div>
+</div>
+<h4>Número de tweets clasificados por tag</h4>
+<canvas id="bytag" width="1" height="1"></canvas>
+<h4>Número de tweets clasificados número de palabras</h4>
+<canvas id="num_word" width="100" height="100"></canvas>
+<h4>Número de tweets clasificados por número de letras</h4>
+<canvas id="num_letter" width="100" height="100"></canvas>
+<h4>Número de tweets clasificados por fecha de creado</h4>
+<canvas id="date" width="100" height="100"></canvas>
+<h4>Número de tweets clasificados por hora</h4>
+<canvas id="hour" width="100" height="100"></canvas>
+<script>
+var ctxtag = document.getElementById("bytag").getContext('2d');
+var ctxlocate = document.getElementById("num_word").getContext('2d');
+var ctxnum_letter = document.getElementById("num_letter").getContext('2d');
+var ctxdate = document.getElementById("date").getContext('2d');
+var ctxhour = document.getElementById("hour").getContext('2d');
+$.ajax({
+    url: "/GetDataForGrafics",
+    dataType: 'json',
+    success: function (data) {
+        console.log(data);
+      if (data) {
+        var bytag = new Chart(ctxtag, data.bytag);
+        var num_word = new Chart(ctxlocate, data.num_word);
+        var num_letter = new Chart(ctxnum_letter, data.num_letter);
+        var date = new Chart(ctxdate, data.date);
+        var hour = new Chart(ctxhour, data.hour);
+        $("#spinner").hide();
+      }
+    }
+  });
+
+</script>
+
+{% endblock %}
