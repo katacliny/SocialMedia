@@ -190,10 +190,10 @@ def GetDataForGrafics(request):
 		alltlbynum_letter = tw.objects.filter(user = request.user).order_by('num_letter')
 		count = {}
 		for tl_ in alltlbynum_letter:
-			if tl_.num_word not in count.keys():
-				count[tl_.num_word] = 1
+			if tl_.num_letter not in count.keys():
+				count[tl_.num_letter] = 1
 			else:
-				count[tl_.num_word] += 1
+				count[tl_.num_letter] += 1
 		
 		databynum_letter['type'] = "bar"
 		databynum_letter['data'] = {
