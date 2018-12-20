@@ -142,7 +142,7 @@ def GetDataForGrafics(request):
 	            "borderWidth": 1
 	        }]
 		}
-		data['options']: {
+		data['options']= {
 	        "scales": {
 	            "yAxes": [{
 	                "ticks": {
@@ -176,7 +176,7 @@ def GetDataForGrafics(request):
 	            "borderWidth": 1
 	        }]
 		}
-		databynum_word['options']: {
+		databynum_word['options']= {
 	        "scales": {
 	            "yAxes": [{
 	                "ticks": {
@@ -211,8 +211,8 @@ def GetDataForGrafics(request):
 	            "borderWidth": 1
 	        }]
 		}
-		databynum_letter['options']: {
-			"responsive": true,
+		databynum_letter['options']= {
+			"responsive": True,
 		}
 
 		alltlbydate = tw.objects.filter(user = request.user).order_by('create')
@@ -239,8 +239,8 @@ def GetDataForGrafics(request):
 	            "borderWidth": 1
 	        }]
 		}
-		databydate ['options']: {
-			"responsive": true,
+		databydate ['options']= {
+			"responsive": True,
 		}
 
 		alltlbyhour = tw.objects.filter(user = request.user).order_by('hour')
@@ -267,8 +267,8 @@ def GetDataForGrafics(request):
 	            "borderWidth": 1
 	        }]
 		}
-		databyhour ['options']: {
-			"responsive": true,
+		databyhour ['options']= {
+			"responsive": True,
 		}
 
 		res["bytag"] = data
