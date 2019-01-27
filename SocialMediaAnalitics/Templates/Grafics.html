@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% include "Snipet/SideBarTwitter.html" %}
+<div class="container">
 <div class="container text-center">
     <h2>A continuación se presentan algunas gráficas, para representar la cantidad de tweets en función de una variable específica como puede ser el numero de letras, la hora etc... </h2>
 </div>
@@ -17,6 +19,7 @@
 <canvas id="date" width="100" height="100"></canvas>
 <h4>Número de tweets clasificados por hora</h4>
 <canvas id="hour" width="100" height="100"></canvas>
+</div>
 <script>
 var ctxtag = document.getElementById("bytag").getContext('2d');
 var ctxlocate = document.getElementById("num_word").getContext('2d');

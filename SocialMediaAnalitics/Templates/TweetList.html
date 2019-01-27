@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 {% load cool_paginate %}
+{% include "Snipet/SideBarTwitter.html" %}
+<div class="container">
 <br/>
 <a id="csv-file" class="btn btn-primary" href="{% url 'CsvFile' %}">Download csv-file</a>
 <br/>
@@ -40,5 +42,6 @@
   {% if tweets %}
     {% cool_paginate page_obj=tweets.paginator %}
   {% endif %}
+</div>
 </div>
 {% endblock %}

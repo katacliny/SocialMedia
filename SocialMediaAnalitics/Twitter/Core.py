@@ -7,7 +7,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 import json
 from threading import Thread
-from .models import UserConfig as uc
+from main.models import UserConfig as uc
 from .models import Tweet
 from datetime import datetime
 from dateutil.parser import parse
@@ -26,7 +26,7 @@ class MyListener(StreamListener):
 				json_data = json.loads(data)
 				new_tweet = Tweet()
 				new_tweet.tweeter_user = json_data["user"]["name"]
-				new_tweet.text = json_data["text"]
+				new_tweet.text = str(json_data["text"])
 				new_tweet.create = parse(json_data["created_at"], fuzzy=True)
 				new_tweet.hour = parse(json_data["created_at"], fuzzy=True).hour
 				new_tweet.locate = json_data["user"]["location"]
@@ -36,6 +36,7 @@ class MyListener(StreamListener):
 				new_tweet.tag = uc.objects.filter(user = self.user).first().filter_key
 				new_tweet.save()
 			except Exception as e:
+				print(e)
 				print("Error al guardar ")
 			return True
 		return False

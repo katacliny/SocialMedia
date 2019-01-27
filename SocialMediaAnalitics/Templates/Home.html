@@ -1,31 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container text-center">
-	<div class="row padding-top">
-		<h1>Tweets Listener</h1>
-		<p>Activar o desactivar la escucha.</p>
-		<div class="container text-center">
-			<div class="row">
-				
-					{% if listen %}
-					<div class="start-listen-button" id="start-stop-listen-button">
-						Listen
-					</div>
-					{% else %}
-					<div class="stop-listen-button" id="start-stop-listen-button">
-						Stoped
-					</div>
-					{% endif %}
-				
-			</div>
-		</div>
+
+<div class="container">
+	<div class="row">
+		<div title="Twitter analitics" class="col-lg-4 col-md-4 col-sm-4 text-center navigation-home"><a href="{% url 'HomeTwitter' %}"><i class="fab fa-twitter"></i></a></div>
+		<div title="Instagram analitics" class="col-lg-4 col-md-4 col-sm-4 text-center navigation-home"><a><i class="fab fa-instagram"></i></a></div>
+		<div title="Youtube analitics" class="col-lg-4 col-md-4 col-sm-4 text-center navigation-home"><a><i class="fab fa-youtube"></i></a></div>
 	</div>
 </div>
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<hr/>
+<div class="container text-center">
+	<h1>Licence</h1>
+	 AT&T, who owned the original Unix implementation, was a publicly regulated monopoly tied up in anti-trust court; it was legally unable to sell a product into the software market. It was, however, able to provide it to academic institutions for the price of media.
+
+	Universities rapidly adopted Unix after an OS conference publicized its availability. It was extremely helpful that Unix ran on the PDP-11, a very affordable 16-bit computer, and was coded in a high-level language that was demonstrably good for systems programming. The DEC PDP-11 had, in effect, an open hardware interface designed to make it easy for customers to write their own OS, which was common. As DEC founder Ken Olsen famously proclaimed, “software comes from heaven when you have good hardware”.
+
+	Unix author Ken Thompson returned to his alma mater, University of California Berkeley (UCB), in 1975 and taught the kernel line-by-line. This ultimately resulted in an evolving system known as BSD (Berkeley Standard Distribution). UCB converted Unix to 32-bits, added virtual memory, and implemented the version of the TCP/IP stack upon which the Internet was essentially built. UCB made BSD available for the cost of media, under what became known as “the BSD license”. A customer purchased Unix from AT&T and then ordered a BSD tape from UCB.
+
+	In the mid-1980s a government anti-trust case against ATT ended with the break-up of ATT. ATT still owned Unix and was now able to sell it. ATT embarked on an aggressive licensing effort and most commercial Unixes of the day became ATT-derived.
+
+	In the early 1990's ATT sued UCB over license violations related to BSD. UCB discovered that ATT had incorporated, without acknowledgment or payment, many improvements due to BSD into ATT's products, and a lengthy court case, primarily between ATT and UCB, ensued. During this period some UCB programmers embarked on a project to rewrite any ATT code associated with BSD. This project resulted in a system called BSD 4.4-lite (lite because it was not a complete system; it lacked 6 key ATT files).
+
+	A lengthy series of articles published slightly later in Dr. Dobbs magazine described a BSD-derived 386 PC version of Unix, with BSD-licensed replacement files for the 6 missing 4.4 lite files. This system, named 386BSD, was due to ex-UCB programmer William Jolitz. It became the original basis of all the PC BSDs in use today.
+
+	In the mid 1990s, Novell purchased ATT's Unix rights and a (then secret) agreement was reached to terminate the lawsuit. UCB soon terminated its support for BSD.
+</div>
+<hr/>
 <br/>
 {% endblock %}
