@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Instagram.apps.InstagramConfig',
     'django_cool_paginator',
     'rest_framework',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,8 @@ STATIC_URL = '/Media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "Media"),
 ]
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}

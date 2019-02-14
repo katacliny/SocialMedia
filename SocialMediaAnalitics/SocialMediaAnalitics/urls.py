@@ -18,7 +18,7 @@ from django.urls import path, include
 from Twitter import views as twitter_views
 from main import views as main_views
 from django.contrib.auth.decorators import login_required 
-from RestAPI.views import TweetList
+from RestAPI.views import TweetList, RegistrationAPI, LoginAPI
 from rest_framework import routers
 
 urlpatterns = [
@@ -28,12 +28,15 @@ urlpatterns = [
     path('CreateUser', main_views.CreateUser.as_view(), name="CreateUser"),
     path('Home/', login_required(main_views.Home.as_view()), name="Home"),
     path('UpdateUserConfig/', login_required(main_views.UpdateUserConfig.as_view()), name="UpdateUserConfig"),
-    path('StartSearch/', login_required(twitter_views.StartSearch)),
-    path('StopSearch/', login_required(twitter_views.StopSearch)),
+    path('StartSearch/', twitter_views.StartSearch),
+    path('StopSearch/', twitter_views.StopSearch),
     path('Grafics/', login_required(twitter_views.Grafics.as_view()), name="Grafics"),
     path('HomeTwitter/', login_required(twitter_views.HomeTwitter.as_view()), name="HomeTwitter"),
     path('GetDataForGrafics/', twitter_views.GetDataForGrafics, name="GetDataForGrafics"),
     path('TweetsList/', login_required(twitter_views.TweetsList.as_view()), name="TweetsList"),
     path('CsvFile/', twitter_views.CSVFile, name="CsvFile"),
     path('TweetsListApi/', TweetList.as_view(), name="TweetsListApi"),
+    path('api/auth/', include('knox.urls')),
+    path("auth/register/", RegistrationAPI.as_view()),
+    path("auth/login/", LoginAPI.as_view()),
 ]

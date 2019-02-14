@@ -40,13 +40,13 @@ def StartSearch(request):
 		config.is_search = True
 		config.save()
 		ss(request.user)
-	return HttpResponse("Start")
+	return JsonResponse({'status': "done"})
 
 def StopSearch(request):
 	config = uc.objects.filter(user = request.user).first()
 	config.is_search = False
 	config.save()
-	return HttpResponse("Stop")
+	return JsonResponse({'status': "done"})
 
 
 class Grafics(TemplateView):
